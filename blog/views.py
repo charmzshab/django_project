@@ -28,6 +28,12 @@ class PostCreateView(LoginRequiredMixin,CreateView):
     model = Post
     fields = ['title','content']
 
+    # sets the author of the post when creating a new post
+    def form_valid(self,form): 
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
     fields = ['title','content']
