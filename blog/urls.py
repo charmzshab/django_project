@@ -3,7 +3,8 @@ from . views import (PostListView,
                     PostDetailView,
                     PostCreateView,
                     PostUpdateView,
-                    PostDeleteView)
+                    PostDeleteView,
+                    UserPostListView)
 from . import views
 
 urlpatterns = [
@@ -14,5 +15,6 @@ urlpatterns = [
                                                                     #convention expects <app>/<model>_form.html
     path('post/<int:pk>/update/', PostUpdateView.as_view(), name='post-update'),
     path('post/<int:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),# convention -> <app>/<model>_confirm_delete.html
+    path('user/<str:username>/', UserPostListView.as_view(), name='user-posts'), # convention -> user_posts.html
     path('about/', views.about, name='blog-about')
-]
+]   
